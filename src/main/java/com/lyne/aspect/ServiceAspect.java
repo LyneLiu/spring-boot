@@ -1,24 +1,19 @@
 package com.lyne.aspect;
 
-import com.sun.javaws.exceptions.InvalidArgumentException;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
-import org.aspectj.lang.reflect.MethodSignature;
 import org.hibernate.validator.HibernateValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Component;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -28,9 +23,9 @@ import java.util.Set;
 
 @Aspect
 @Component
-public class RequestAspect {
+public class ServiceAspect {
 
-    private Logger logger = LoggerFactory.getLogger(RequestAspect.class);
+    private Logger logger = LoggerFactory.getLogger(ServiceAspect.class);
 
 
     @Around("execution(public * com.lyne.service.*.*(..))")
