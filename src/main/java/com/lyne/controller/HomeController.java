@@ -6,10 +6,13 @@ import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimaps;
 import com.lyne.bo.PrdBean;
 import com.lyne.service.DemoService;
+import com.lyne.utils.SerializeUtil;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
@@ -60,6 +63,16 @@ public class HomeController {
         demoService.handle(prdBean01);
 
         return "success";
+    }
+
+    @RequestMapping(value = "/{name}",method = RequestMethod.POST)
+    public String prdInfo(@PathVariable String name){
+        return SerializeUtil.serialize(demoService.prdInfo(name)).toString();
+    }
+
+    @RequestMapping(value = "/{name}",method = RequestMethod.GET)
+    public String getPrdInfo(@PathVariable String name){
+        return SerializeUtil.serialize(demoService.getPrdInfo(name)).toString();
     }
 
 }

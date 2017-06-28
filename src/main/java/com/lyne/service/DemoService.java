@@ -5,6 +5,9 @@ import com.google.common.base.Function;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimaps;
 import com.lyne.bo.PrdBean;
+import com.lyne.common.RedisCache;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -16,6 +19,9 @@ import java.util.*;
 
 @Service
 public class DemoService {
+
+    @Autowired
+    private RedisCache redisCache;
 
     public void calendarDemo() {
         /* 日期处理 */
@@ -75,4 +81,25 @@ public class DemoService {
         };
     }
 
+    /**
+     * 通过@Cacheable注解将数据写入redisCache缓存
+     * @param name
+     * @return
+     */
+    @Cacheable(value = "redisCache",key = "#name")
+    public PrdBean prdInfo(String name){
+        PrdBean prdBean = new PrdBean();
+        prdBean.setName(name);
+        prdBean.setAddr("shanghai");
+        return prdBean;
+    }
+
+    /**
+     * 获取redisCache缓存中存储的数据
+     * @param name
+     * @return
+     */
+    public Object getPrdInfo(String name) {
+        return redisCache.get(name,PrdBean.class);
+    }
 }

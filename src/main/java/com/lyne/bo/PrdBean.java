@@ -7,6 +7,7 @@ import javax.annotation.PreDestroy;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -14,7 +15,7 @@ import java.util.List;
  */
 
 @Component
-public class PrdBean {
+public class PrdBean implements Serializable{
 
     @NotNull
     private String name;
