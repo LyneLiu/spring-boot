@@ -65,14 +65,4 @@ public class HomeController {
         return "success";
     }
 
-    @RequestMapping(value = "/{name}",method = RequestMethod.POST)
-    public String prdInfo(@PathVariable String name){
-        return SerializeUtil.serialize(demoService.prdInfo(name)).toString();
-    }
-
-    @RequestMapping(value = "/{name}",method = RequestMethod.GET)
-    public String getPrdInfo(@PathVariable String name){
-        return SerializeUtil.serialize(demoService.getPrdInfo(name)).toString();
-    }
-
 }
