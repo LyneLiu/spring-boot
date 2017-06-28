@@ -48,7 +48,13 @@ public class ServiceAspect {
             StringBuffer buffer = new StringBuffer(64);// 用于存储验证后的错误信息
             for (Object object : args) {
 
-                Validator validator = Validation.byProvider(HibernateValidator.class).configure().buildValidatorFactory().getValidator();
+                Validator validator = Validation.byProvider(HibernateValidator.class)
+                        .configure()
+                        //添加fail-fast机制
+                        //.addProperty( "hibernate.validator.fail_fast", "true" )
+                        .failFast(true)
+                        .buildValidatorFactory()
+                        .getValidator();
 
                 Set<ConstraintViolation<Object>> constraintViolations = validator.validate(object);// 验证某个对象,，其实也可以只验证其中的某一个属性的
 
