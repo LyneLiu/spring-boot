@@ -7,6 +7,7 @@ import com.google.common.collect.Multimaps;
 import com.lyne.bo.PrdBean;
 import com.lyne.common.RedisCache;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,7 @@ import java.util.*;
 public class DemoService {
 
     @Autowired
-    private RedisCache redisCache;
+    private CacheManager cacheManager;
 
     public void calendarDemo() {
         /* 日期处理 */
@@ -100,6 +101,6 @@ public class DemoService {
      * @return
      */
     public Object getPrdInfo(String name) {
-        return redisCache.get(name,PrdBean.class);
+        return ((RedisCache)cacheManager.getCache("redisCache").getNativeCache()).get(name,PrdBean.class);
     }
 }
