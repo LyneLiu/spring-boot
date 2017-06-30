@@ -1,13 +1,17 @@
 package com.lyne.aspect;
 
+import com.lyne.common.BizMetric;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.hibernate.validator.HibernateValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.validation.ConstraintViolation;
@@ -25,8 +29,10 @@ import java.util.Set;
 @Component
 public class ServiceAspect {
 
-    private Logger logger = LoggerFactory.getLogger(ServiceAspect.class);
+    @Autowired
+    private BizMetric bizMetric;
 
+    private Logger logger = LoggerFactory.getLogger(ServiceAspect.class);
 
     @Around("execution(public * com.lyne.service.*.*(..))")
     public Object aspect(ProceedingJoinPoint point) throws Throwable {
@@ -38,6 +44,19 @@ public class ServiceAspect {
         } catch (Throwable e) {
 
             return null;
+        }
+
+    }
+
+    @Before("execution(public * com.lyne.controller.*.*(..))")
+    public void metric(JoinPoint point) throws Throwable {
+        logger.info("executing request aspect!");
+        try {
+            /*https://my.oschina.net/itblog/blog/211693*/
+            bizMetric.metricCount(point.getSignature().getDeclaringTypeName() +
+                    "." + point.getSignature().getName());
+        } catch (Throwable e) {
+            logger.error(ExceptionUtils.getStackTrace(e));
         }
 
     }
