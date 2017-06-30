@@ -1,6 +1,6 @@
 package com.lyne.aspect;
 
-import com.lyne.common.BizMetric;
+import com.lyne.metric.BizMetric;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;

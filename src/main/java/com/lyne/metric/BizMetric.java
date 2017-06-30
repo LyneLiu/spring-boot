@@ -1,4 +1,4 @@
-package com.lyne.common;
+package com.lyne.metric;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.metrics.CounterService;
