@@ -2,7 +2,6 @@ package com.lyne.bo;
 
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;

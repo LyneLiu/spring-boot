@@ -1,24 +1,15 @@
 package com.lyne.controller;
 
 
-import com.google.common.base.Function;
-import com.google.common.collect.ImmutableMultimap;
-import com.google.common.collect.Multimaps;
 import com.lyne.bo.PrdBean;
 import com.lyne.service.DemoService;
-import com.lyne.utils.SerializeUtil;
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by nn_liu on 2017/5/17.
