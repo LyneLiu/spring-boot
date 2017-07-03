@@ -15,15 +15,16 @@ import java.util.List;
  * @author nn_liu
  * @Created 2017-06-30-18:49
  */
-@Component
-public class CustomMetric implements PublicMetrics {
+@Component public class CustomMetric implements PublicMetrics {
 
-    @Override
-    public Collection<Metric<?>> metrics() {
+    @Override public Collection<Metric<?>> metrics() {
         List<Metric<?>> metrics = new ArrayList<Metric<?>>();
-        metrics.add(new Metric<Long>("spring.startup-date", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").(Application.getContext().getStartupDate())));
-        metrics.add(new Metric<Integer>("spring.bean.definitions",Application.getContext().getBeanDefinitionCount()));
-        metrics.add(new Metric<Integer>("spring.beans",Application.getContext().getBeanNamesForType(Object.class).length));
+        metrics.add(
+                new Metric<Long>("spring.startup-date", Application.getContext().getStartupDate()));
+        metrics.add(new Metric<Integer>("spring.bean.definitions",
+                Application.getContext().getBeanDefinitionCount()));
+        metrics.add(new Metric<Integer>("spring.beans",
+                Application.getContext().getBeanNamesForType(Object.class).length));
         return metrics;
     }
 

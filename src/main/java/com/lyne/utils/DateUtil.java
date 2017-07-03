@@ -3,6 +3,10 @@ package com.lyne.utils;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -15,6 +19,17 @@ import org.slf4j.LoggerFactory;
 public class DateUtil {
 
 	private static Logger logger = LoggerFactory.getLogger(DateUtil.class);
+
+	/**
+	 * jdk 1.8 特性
+	 * @param mills
+	 * @return
+	 */
+	public static String getFormatDate(long mills){
+		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		return dateTimeFormatter.format(LocalDateTime.ofInstant(Instant.ofEpochMilli(mills),
+				ZoneId.of("Asia/Shanghai")));
+	}
 
 	/**
 	 * getDateStr get a string with format YYYY-MM-DD from a Date object
