@@ -2,6 +2,7 @@ package com.lyne.bo;
 
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -26,11 +27,11 @@ public class PrdBean implements Serializable{
     @Size(min = 1)
     private List<SubPrdBean> subPrdBeans;
 
-    /*@PostConstruct
+    @PostConstruct
     public void init(){
         this.name = "test_name";
         this.addr = "test_addr";
-    }*/
+    }
 
     @PreDestroy
     public void destroy(){
