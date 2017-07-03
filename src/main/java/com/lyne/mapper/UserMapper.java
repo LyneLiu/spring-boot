@@ -5,7 +5,6 @@ import java.util.List;
 import com.lyne.common.UserSexEnum;
 import com.lyne.entity.UserEntity;
 import org.apache.ibatis.annotations.*;
-import org.springframework.stereotype.Component;
 
 @Mapper
 public interface UserMapper {
@@ -17,7 +16,7 @@ public interface UserMapper {
 	})
 	List<UserEntity> getAll();
 	
-	@Select("SELECT * FROM users WHERE id = #{id}")
+	@Select("SELECT u.id, u.username, u.password, u.user_sex, u.nick_name FROM users as u WHERE id = #{id}")
 	@Results({
 		@Result(property = "userSex",  column = "user_sex", javaType = UserSexEnum.class),
 		@Result(property = "nickName", column = "nick_name")

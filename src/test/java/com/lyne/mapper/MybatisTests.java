@@ -42,11 +42,11 @@ public class MybatisTests {
 
     @Test
     public void testUpdate() throws Exception {
-        UserEntity user = UserMapper.getOne(3l);
+        UserEntity user = UserMapper.getOne(30l);
         System.out.println(user.toString());
         user.setNickName("neo");
         UserMapper.update(user);
-        Assert.assertTrue(("neo".equals(UserMapper.getOne(3l).getNickName())));
+        Assert.assertTrue(("neo".equals(UserMapper.getOne(30l).getNickName())));
     }
 
 }
