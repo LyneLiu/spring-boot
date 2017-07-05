@@ -1,6 +1,5 @@
 package com.lyne.service;
 
-import Tour.PriceEngine.InventoryChange.Message.Schedule;
 import com.google.common.base.Function;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimaps;
@@ -33,10 +32,6 @@ public class DemoService {
         System.out.println(currDate);
         System.out.println(futureDate);
 
-        Schedule schedule = new Schedule();
-        schedule.setDepartureDate(new Date(1495036800000l).toString());
-        System.out.println(schedule.getDepartureDate());
-        System.out.println(new Date(1495036800000l));
     }
 
     public void bigDecimalDemo() {

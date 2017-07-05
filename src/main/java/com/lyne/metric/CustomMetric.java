@@ -5,9 +5,7 @@ import org.springframework.boot.actuate.endpoint.PublicMetrics;
 import org.springframework.boot.actuate.metrics.Metric;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 /**
  * 通过PublicMetrics实现自定义的度量信息
@@ -17,7 +15,18 @@ import java.util.List;
  */
 @Component public class CustomMetric implements PublicMetrics {
 
+    /**
+     * 通过PublicMetrics 实现pull metric
+     * @return
+     */
     @Override public Collection<Metric<?>> metrics() {
+
+        /*int num = System.getenv().size();
+        Metric<?> metric = new Metric<Integer>("hello.service.custom.metric", num, new Date());
+        HashSet<Metric<?>> set = new HashSet<Metric<?>>();
+        set.add(metric);
+        return set;*/
+
         List<Metric<?>> metrics = new ArrayList<Metric<?>>();
         metrics.add(
                 new Metric<Long>("spring.startup-date", Application.getContext().getStartupDate()));
