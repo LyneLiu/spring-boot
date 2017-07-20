@@ -1,5 +1,0 @@
-package com.lyne.enum;
-
-public enum UserSexEnum {
-	MAN, WOMAN
-}
