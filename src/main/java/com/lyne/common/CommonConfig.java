@@ -34,8 +34,7 @@ public class CommonConfig {
 
     @Bean
     @ExportMetricWriter
-    public RedisMetricRepository redisMetricWriter(
-            RedisConnectionFactory connectionFactory) {
+    public RedisMetricRepository redisMetricWriter(RedisConnectionFactory connectionFactory) {
         return new RedisMetricRepository(connectionFactory,
                 this.export.getRedis().getPrefix(), this.export.getRedis().getKey());
     }
