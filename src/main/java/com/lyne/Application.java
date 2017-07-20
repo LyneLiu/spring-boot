@@ -35,11 +35,6 @@ public class Application implements ApplicationContextAware {
 		return applicationContext;
 	}
 
-	@Bean
-	public ServletRegistrationBean servletRegistrationBean() {
-		return new ServletRegistrationBean(new RegisteredServlet(), "/registeredServlet/*"); 	// ServletName默认值为首字母小写，即registeredServlet
-	}
-
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
 		this.applicationContext = applicationContext;
