@@ -1,11 +1,11 @@
 package com.lyne.mapper;
 
 import com.lyne.entity.UserEntity;
+import com.lyne.mapper.builder.UserSqlBuilder;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
-@Mapper
 public interface UserMapper {
 	
 	@Select("SELECT * FROM users")
@@ -30,5 +30,13 @@ public interface UserMapper {
 
 	@Delete("DELETE FROM users WHERE id =#{id}")
 	void delete(Long id);
+
+
+	@SelectProvider(type = UserSqlBuilder.class, method = "getUserByName")
+	@Results({
+			@Result(property = "userSex",  column = "user_sex", javaType = String.class),
+			@Result(property = "nickName", column = "nick_name")
+	})
+	List<UserEntity> getUserByName(String userName);
 
 }

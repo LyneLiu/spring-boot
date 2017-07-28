@@ -24,33 +24,39 @@ import java.util.List;
 public class MybatisTests {
 
     @Autowired
-    private UserMapper UserMapper;
+    private UserMapper userMapper;
 
     @Autowired
     private CustomUserMapper customUserMapper;
 
     @Test
     public void testInsert() throws Exception {
-        UserMapper.insert(new UserEntity("aa", "a123456", "0"));
-        UserMapper.insert(new UserEntity("bb", "b123456", "1"));
-        UserMapper.insert(new UserEntity("cc", "b123456", "1"));
+        userMapper.insert(new UserEntity("aa", "a123456", "0"));
+        userMapper.insert(new UserEntity("bb", "b123456", "1"));
+        userMapper.insert(new UserEntity("cc", "b123456", "1"));
 
-        Assert.assertEquals(3, UserMapper.getAll().size());
+        Assert.assertEquals(3, userMapper.getAll().size());
     }
 
     @Test
     public void testQuery() throws Exception {
-        List<UserEntity> users = UserMapper.getAll();
+        List<UserEntity> users = userMapper.getAll();
         System.out.println(users.toString());
     }
 
     @Test
     public void testUpdate() throws Exception {
-        UserEntity user = UserMapper.getOne(30l);
+        UserEntity user = userMapper.getOne(30l);
         System.out.println(user.toString());
         user.setNickName("neo");
-        UserMapper.update(user);
-        Assert.assertTrue(("neo".equals(UserMapper.getOne(30l).getNickName())));
+        userMapper.update(user);
+        Assert.assertTrue(("neo".equals(userMapper.getOne(30l).getNickName())));
+    }
+
+    @Test
+    public void testQueryByName(){
+        List<UserEntity> userEntitys = userMapper.getUserByName("bb");
+        Assert.assertEquals(2,userEntitys.size());
     }
 
     @Test

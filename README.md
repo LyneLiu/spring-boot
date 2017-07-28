@@ -24,6 +24,8 @@
 
     ORM数据库使用。
     
+    common mapper: 通过mybatis访问db数据。另外一个方案是使用spring boot jpa方式实现数据访问。
+    
 6. servlet：
 
 
